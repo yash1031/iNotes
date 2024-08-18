@@ -11,6 +11,7 @@ import SplashScreen from './SplashScreen';
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  //CHeck if its there
   const [loading, setLoading]= useState(true);
   const navigate= useNavigate();
   useEffect(()=>{
