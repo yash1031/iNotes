@@ -1,0 +1,7 @@
+# Node Modules
+client/node_modules/
+backend/node_modules/
+
+# Environment Variables
+client/.env
+backend/.env

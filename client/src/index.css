@@ -1,0 +1,62 @@
+body {
+
+  margin: 0;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+
+  -moz-osx-font-smoothing: grayscale;
+
+  background: #474f57;
+  /* background-color: black; */
+  /* background-color: rgb(103 97 61); */
+  color: white;
+  height: 100%;
+}
+
+@keyframes blink {
+  0% { border-color: #e46464; }
+  50% { border-color: #f03c3c; }
+  100% { border-color: #fa0000; }
+}
+
+.blinking {
+  animation: blink 0.5s step-start 6; /* Blink for 3 seconds */
+}
+
+.primaryBtn, .primaryBtn:hover, .primaryBtn:active{
+  background-color: #0000004d;
+    color: #ffffffdb;
+  border: none;
+}
+.secondaryBtn, .secondaryBtn:hover, .secondaryBtn:active{
+  background-color: #0000004d;
+    color: #ffffffdb;
+  border: none;
+}
+/* .input{
+  background-color: rgb(134, 108, 108);
+  border: none;
+}
+.input:focus{
+  background-color: rgb(134, 108, 108);
+} */
+/* .input:-webkit-autofill, .input:-webkit-autofill:hover, .input:-webkit-autofill:focus {
+  background-color: rgb(134, 108, 108);
+} */
+code {
+
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+
+    monospace;
+
+}
+
+i{
+  cursor: pointer;
+}
