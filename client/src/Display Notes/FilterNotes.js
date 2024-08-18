@@ -1,11 +1,13 @@
 import React from 'react'
 import { useState, useContext, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import noteContext from '../Contexts/Notes/noteContext';
 
 const FilterNotes =  () => {
   const [filterField, setFilterField]= useState('All Notes');
   const [noteType, setNoteType]= useState('All Notes');
   const {notes, setNotes, notesKeyword, notesCategory}=  useContext(noteContext);
+  let location= useLocation();
 //   console.log("notesCopy initially are: "+ JSON.stringify(notesCopy.current));
 
   const filterByKeyword = (e) =>{
@@ -60,7 +62,7 @@ const FilterNotes =  () => {
 
   return (
     <>
-    <span style={{position: 'absolute', left:"20vw", height:"100%"}}>
+    <span style={{position: 'absolute', left:"20vw", height:"100%", display: location.pathname.includes("/Home")? "": "none"}}>
       <span className="dropdown" style={{height:"100%"}}>
           <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Search In
@@ -79,17 +81,17 @@ const FilterNotes =  () => {
                style={{display: "inline", padding:'0 10px', margin:"10px 10px", border:"none", height:'70%', borderRadius: "5px", width:'35vw'}} 
                placeholder={filterField=== 'description'? `Enter a keyword or phrase from description`: filterField=== 'All Notes'? 'Search across your notes': `Enter a ${filterField}`} />
     </span>
-        <span className="dropdown" style={{position: 'absolute', right:"28vw", top: "10px", height:"100%", width:"5vw"}}>
-          <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {noteType}
-          </button>
-          <span className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{width: "100%"}}>
-            <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'Article')}>Articles</a>
-            <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'Task')}>Tasks</a>
-            <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'General Note')}>General Notes</a>
-            <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'All Notes')}>All Notes</a>
-          </span>
-        </span>
+    <span className="dropdown" style={{position: 'absolute', right:"25vw", top: "10px", height:"100%", width:"5vw", display: location.pathname.includes("/Home")? "": "none"}}>
+      <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {noteType}
+      </button>
+      <span className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{width: "100%"}}>
+        <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'Article')}>Articles</a>
+        <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'Task')}>Tasks</a>
+        <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'General Note')}>General Notes</a>
+        <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'All Notes')}>All Notes</a>
+      </span>
+    </span>
    </>
 
   )

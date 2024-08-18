@@ -45,8 +45,11 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
+          {/* <span style={{display: ""}}> */}
+
           <FilterNotes />
           <SortNotes/>
+          {/* </span> */}
           {!(localStorage.getItem('token'))?<form className="d-flex" role="search">
             <Link className="btn mx-2 primaryBtn" to='/SignUp' role="button">SignUp</Link>
             <Link className="btn mx-2 primaryBtn" to='/LogIn' role="button">LogIn</Link>

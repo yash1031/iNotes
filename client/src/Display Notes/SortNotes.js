@@ -1,10 +1,11 @@
 import React from 'react'
 import {useState, useContext} from 'react'
 import noteContext from '../Contexts/Notes/noteContext';
+import { useLocation } from 'react-router-dom';
 
 const SortNotes = () => {
   const {notes, setNotes}= useContext(noteContext);
-
+  const location= useLocation();
   const sortNotes= async (key) =>{
 
     // console.log("key: "+ key);
@@ -40,7 +41,7 @@ const SortNotes = () => {
 
   return (
     <div>
-      <span className="dropdown" style={{position: 'absolute', right:"15vw", top: "10px", height:"100%", width:"5vw"}}>
+      <span className="dropdown" style={{position: 'absolute', right:"15vw", top: "10px", height:"100%", width:"5vw", display: location.pathname.includes("/Home")? "": "none"}}>
           <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sort Notes By
           </button>
