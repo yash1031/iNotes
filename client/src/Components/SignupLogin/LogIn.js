@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {Link} from "react-router-dom";
 import { toast } from 'react-toastify';
+import './LoginSignUp.css'
 
 const LogIn = (props) => {
 
@@ -44,11 +45,11 @@ const LogIn = (props) => {
     
   };
   return (
-    <div className="container " style={{height: "100%", padding: "90px 30px", margin: "auto", marginTop: "100px", width:"30%", backgroundColor: "rgb(199 213 234 / 19%)", borderRadius: "5px", boxShadow: "0 2px 10px rgba(184, 183, 183, 0.1)"}}>
+    <div className="loginSignUpComponent" style={{}}>
       
-      <h2>Log In To iNotes</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form className="loginSignUpForm" onSubmit={handleSubmit}>
+        <h2>Log In To iNotes</h2>
         <div className="form-group my-3">
           <input type="email" className="form-control input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
         </div>
@@ -60,9 +61,9 @@ const LogIn = (props) => {
         </button>
       </form>
 
-      <div id="forgotPasswordsignUplogIn" style={{margin:"30px auto"}}>
-        <Link to='/ForgotPwd'  id="forgotPassword" style={{float:"left", textDecoration: "none", color:"lightgrey"}}>Forgot Password?</Link>
-        <Link to="/SignUp" id="signUplogIn" style={{textDecoration: "none", color: "white", float: "right"}} onTouchStart={(e)=>{document.getElementById('signUplogIn').style.fontSize="35px"}}>Sign Up</Link>
+      <div className="signUpLoginSection">
+        <Link to='/ForgotPwd'  id="forgotPassword" >Forgot Password?</Link>
+        <Link to="/SignUp" id="signUpLogIn"  onTouchStart={(e)=>{document.getElementById('signUpLogIn').style.fontSize="35px"}}>Sign Up</Link>
       </div>
       
     </div>

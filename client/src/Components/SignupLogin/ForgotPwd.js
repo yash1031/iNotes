@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Passwords } from './SignUp';
 import { toast } from 'react-toastify';
+import './ForgotPwd.css'
 
 const ForgotPwd = () => {
   const [emailValidated, setEmailValidated] = useState(null);
@@ -78,34 +79,36 @@ const ForgotPwd = () => {
   }
 
   return (
-    <div className="container " style={{height: "100%", padding: "90px 30px", margin: "auto", marginTop: "100px", width:"25%", backgroundColor: "rgb(199 213 234 / 19%)", borderRadius: "5px", boxShadow: "0 2px 10px rgba(184, 183, 183, 0.1)"}}>
-      <label id="passwordRestLabel"><h2>Password Reset</h2></label>
-      <div id="emailValidation" style={{display:""}}>
-        <div id="info" style={{border: "1px solid white", borderRadius: "7px", background: "gray", margin: "20px auto", padding:"10px"}}>
-        Forgotten your password? Enter your e-mail address below, and we'll send you an e-mail allowing you to reset it.
+    <div className="loginSignUpComponent">
+      <div className="forgotPwdContent">
+        <label id="passwordRestLabel"><h2>Password Reset</h2></label>
+        <div id="emailValidation" style={{display:""}}>
+          <div id="info" style={{border: "1px solid white", borderRadius: "7px", background: "gray", margin: "20px auto", padding:"10px"}}>
+          Forgotten your password? Enter your e-mail address below, and we'll send you an e-mail allowing you to reset it.
+          </div>
+          <form onSubmit={handleSubmit}>
+              <Email emailValidated={emailValidated} setEmailValidated={setEmailValidated} />
+              <button type="submit" className="btn primaryBtn" style={{width: "100%", marginTop: "30px"}}>
+              Submit
+              </button>
+          </form>
         </div>
-        <form onSubmit={handleSubmit}>
-            <Email emailValidated={emailValidated} setEmailValidated={setEmailValidated} />
-            <button type="submit" className="btn primaryBtn" style={{width: "100%", marginTop: "30px"}}>
-            Submit
-            </button>
-        </form>
-      </div>
-      <div id="newPasswords" style={{display:"none"}}>
-        <form onSubmit={handleReset}>
-            <Passwords></Passwords>
-                <button type="submit" className="btn primaryBtn" style={{width: "100%", marginTop: "30px"}}>
-                Reset My Password
-                </button>
-            </form>
-      </div>
-      <div id="passwordChanged" style={{display: "none"}}>
-        <i id="successIcon" class="fa-regular fa-circle-check fa-9x" style={{display:"block", textAlign: "center", marginBottom:"50px"}}/>
-        <h2 style={{textAlign: "center", marginBottom: "30px"}}>Password Changed!</h2>
-        <p>Your Password has been changed successfully.</p>
-        <button className="btn primaryBtn" style={{width: "100%", marginTop: "30px"}} onClick={(e)=>{navigate('/LogIn')}}>
-                Go Back to Log In
-         </button>
+        <div id="newPasswords" style={{display:"none"}}>
+          <form onSubmit={handleReset}>
+              <Passwords></Passwords>
+                  <button type="submit" className="btn primaryBtn" style={{width: "100%", marginTop: "30px"}}>
+                  Reset My Password
+                  </button>
+              </form>
+        </div>
+        <div id="passwordChanged" style={{display: "none"}}>
+          <i id="successIcon" class="fa-regular fa-circle-check fa-9x" style={{display:"block", textAlign: "center", marginBottom:"50px"}}/>
+          <h2 style={{textAlign: "center", marginBottom: "30px"}}>Password Changed!</h2>
+          <p>Your Password has been changed successfully.</p>
+          <button className="btn primaryBtn" style={{width: "100%", marginTop: "30px"}} onClick={(e)=>{navigate('/LogIn')}}>
+                  Go Back to Log In
+          </button>
+        </div>
       </div>
     </div>
   )

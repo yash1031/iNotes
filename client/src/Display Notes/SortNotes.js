@@ -2,6 +2,7 @@ import React from 'react'
 import {useState, useContext} from 'react'
 import noteContext from '../Contexts/Notes/noteContext';
 import { useLocation } from 'react-router-dom';
+import './FilterSort.css';
 
 const SortNotes = () => {
   const {notes, setNotes}= useContext(noteContext);
@@ -40,10 +41,10 @@ const SortNotes = () => {
   }
 
   return (
-    <div>
-      <span className="dropdown" style={{position: 'absolute', right:"15vw", top: "10px", height:"100%", width:"5vw", display: location.pathname.includes("/Home")? "": "none"}}>
+    <>
+      <span id="sortComponent" className="dropdown" style={{ float:"right"}}>
           <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Sort Notes By
+            Sort Notes
           </button>
           <span className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{width: "100%"}}>
             <a className="dropdown-item" onClick={()=>sortNotes('title')}>Title</a>
@@ -53,8 +54,8 @@ const SortNotes = () => {
             <a className="dropdown-item" onClick={()=>sortNotes('creationDate')}>Creation Date</a>
             <a className="dropdown-item" onClick={()=>sortNotes('updationDate')}>Updation Date</a>
           </span>
-        </span>
-    </div>
+      </span>
+    </>
   )
 }
 

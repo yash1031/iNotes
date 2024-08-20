@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import {Link} from "react-router-dom";
 import {toast } from 'react-toastify';
+import './LoginSignUp.css'
 // import GoogleLogin from "./GoogleLogin";
 // import GoogleOAuth from "./GoogleOAuth";
 // import GoogleLogout from "./GoogleLogout";
@@ -142,9 +143,9 @@ const Email= ({email, setEmailValidated})=>{
             </button>
           </div>
 
-          <div id="otpSection" style={{ display: "none" }}>
-            <div className="input-group" style={{ width: "60%", margin: "10px 0" }}>
-              <input type="number" className="form-control input" id="otpID" placeholder="Please enter the OTP" style={{ marginRight: "10px", WebkitAppearance: 'none', MozAppearance: 'textfield'}}/>
+          <div id="otpSection" style={{ display: "none", margin: "10px 0" }}>
+            <div className="input-group" style={{  }}>
+              <input type="number" className="form-control input" id="otpID" placeholder="Enter OTP" style={{ marginRight: "10px", WebkitAppearance: 'none', MozAppearance: 'textfield'}}/>
               <button type="button" className="btn btn-secondary secondaryBtn" aria-disabled="true" onClick={verifyOTP} >
                 Verify
               </button>
@@ -355,11 +356,11 @@ const SignUp = (props) => {
   return (
    
       
-    <div className="container" style={{ height: "100%", padding: "70px 30px", margin: "auto", marginTop: "100px", width: "30%", background: "rgb(199 213 234 / 19%)", borderRadius: "5px", boxShadow: "0 2px 10px rgba(184, 183, 183, 0.1)"}}>
+    <div className="loginSignUpComponent" style={{ }}>
       
-      <h2>Create Account</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form className="loginSignUpForm" onSubmit={handleSubmit}>
+        <h2>Create Account</h2>
         <Email emailValidated={emailValidated} setEmailValidated={setEmailValidated} />
         <div className="form-group my-3">
           <input type="text" className="form-control input" id="nameID" aria-describedby="emailHelp" placeholder="User Name" />
@@ -375,7 +376,7 @@ const SignUp = (props) => {
         </button>
       </form>
 
-      <div style={{textAlign: "center", marginTop:"30px", color: "lightgrey"}}> 
+      <div className="signUpLoginSection" style={{textAlign: "center", color: "lightgrey"}}> 
         Have an account? <Link to="/LogIn" id="logInsignUp" style={{textDecoration: "none", color: "white"}} onTouchStart={(e)=>{document.getElementById('logInsignUp').style.fontSize="35px"}}>Log In</Link>
       </div>
 

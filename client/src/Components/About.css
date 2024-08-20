@@ -1,8 +1,4 @@
 /* styles.css */
-/* body{
-    background-color: #caaa84;
-    height: 100%;
-} */
 .about-container {
     max-width: 800px;
     margin: 70px auto;
@@ -60,4 +56,14 @@
     margin: 0;
     font-size: 1em;
     color: #ddd;
+}
+
+@media only screen and (max-width: 800px){
+    .about-container{
+        height: 105vh;
+        border-radius: 0px;
+        margin-top: 50px;
+        margin-bottom: 0px;
+
+    }
 }

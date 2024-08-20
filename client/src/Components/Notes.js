@@ -5,6 +5,7 @@ import AddNote from "./AddNote";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import RichTextEditor from "./RichTextEditor";
+import SortNotes from "../Display Notes/SortNotes";
 
 const Notes = () => {
   const context = useContext(noteContext);
@@ -66,7 +67,7 @@ const Notes = () => {
   let x= fun1();
 
   return (
-    <div style={{paddingTop: "120px"}}>
+    <div style={{paddingTop: "200px"}}>
       <AddNote></AddNote>
       
 <button ref={ref} type="button" className="btn d-none" data-toggle="modal" data-target="#exampleModal">
@@ -128,7 +129,10 @@ const Notes = () => {
     </div>
   </div>
 </div>
-      <h1 className="my-3">Your Notes</h1>
+      <div style={{margin:"20px 0"}}>
+        <h1 className="my-3" style={{display:"inline"}}>Your Notes</h1>
+        <SortNotes/>
+      </div>
       <div className="d-flex flex-wrap my-4">
         {notes.length === 0 && <div className="mx-3">No notes to display</div>}
      
@@ -136,7 +140,7 @@ const Notes = () => {
         {notes.map((note) => {
               console.log(note);
               return (
-                <div className="mx-3">
+                <div className="mx-3" >
                   <NoteItem key={x()} updateNote={updateNote} note={note} />
                 </div>
               );

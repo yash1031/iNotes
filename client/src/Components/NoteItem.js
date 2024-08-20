@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import noteContext from "../Contexts/Notes/noteContext";
 import { toast } from 'react-toastify';
 import { useState } from "react";
+import './NoteItem.css'
 
 const NoteItem = (props) => {
   const { note, updateNote } = props;
@@ -53,7 +54,7 @@ const NoteItem = (props) => {
           </div>
         </div>
       </div>
-      <div className="card my-3" style={{ width: "18rem", backgroundColor: "rgb(170 157 154 / 68%)" }}>
+      <div id="notesCard" className="card my-3">
         <div className="card-body">
           <div className="continer" style={{margin: "10px 0"}}>
             <h5 className="card-title" style={{display:"inline"}}>{note.title}</h5>

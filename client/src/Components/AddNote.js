@@ -67,7 +67,7 @@ const AddNote = () => {
     <div  style={ (notesKeyword.current.length!== 0  && notesKeyword.current.length  !== notes.length )? {display: "none"} : {pdisplay: ""}}>
       <div style={{width:"100%", margin: "20px 0"}}>
         <h1 style={{display:"inline"}}>Add {noteType==="Article"? "an": "a"} {noteType}</h1>
-        <div className="dropdown" style={{display:"inline", float:"right"}}>
+        <div className="dropdown" style={{margin:"20px 0"}}>
           <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select Note Type
           </button>

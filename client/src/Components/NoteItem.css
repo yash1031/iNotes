@@ -1,0 +1,17 @@
+#notesCard{
+    width: 21vw;
+    background-color: rgb(170 157 154 / 68%)
+}
+
+@media only screen and (max-width: 1300px) and (min-width: 801px) {
+    #notesCard{
+        width: 32vw
+    } 
+
+}
+@media only screen and (max-width: 800px){
+    #notesCard{
+        width: 65vw
+    } 
+
+}

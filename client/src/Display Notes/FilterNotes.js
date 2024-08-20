@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useContext, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import noteContext from '../Contexts/Notes/noteContext';
+import './FilterSort.css';
 
 const FilterNotes =  () => {
   const [filterField, setFilterField]= useState('All Notes');
@@ -62,7 +63,7 @@ const FilterNotes =  () => {
 
   return (
     <>
-    <span style={{position: 'absolute', left:"20vw", height:"100%", display: location.pathname.includes("/Home")? "": "none"}}>
+    <span >
       <span className="dropdown" style={{height:"100%"}}>
           <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Search In
@@ -71,17 +72,16 @@ const FilterNotes =  () => {
             <a className="dropdown-item" onClick={(e)=>{e.preventDefault(); setFilterField('title')}}>Title</a>
             <a className="dropdown-item" onClick={(e)=>{e.preventDefault(); setFilterField('description')}}   >Description</a>
             <a className="dropdown-item" onClick={(e)=>{e.preventDefault(); setFilterField('tag')}}>Tag</a>
-            <a className="dropdown-item" onClick={(e)=>{e.preventDefault(); setFilterField('priority')}}>Priority</a>
+            {/* <a className="dropdown-item" onClick={(e)=>{e.preventDefault(); setFilterField('priority')}}>Priority</a> */}
             <a className="dropdown-item" onClick={(e)=>{e.preventDefault(); setFilterField('creationDate')}}>Creation Date</a>
             <a className="dropdown-item" onClick={(e)=>{e.preventDefault(); setFilterField('All Notes')}}>All Notes</a>
           </span>
         </span>
-        <input onChange={(e)=> filterByKeyword(e)}
-               type={filterField==='priority'?"number": filterField=== 'creationDate'?"date": "text"} 
-               style={{display: "inline", padding:'0 10px', margin:"10px 10px", border:"none", height:'70%', borderRadius: "5px", width:'35vw'}} 
+        <input id="searchNotesInput" style={{padding: "0 10px" ,  margin: "0px 10px" ,  border: "none" ,  height: "35px" ,  borderRadius: "5px" ,  width: "45%"}} onChange={(e)=> filterByKeyword(e)}
+               type={filterField==='priority'?"number": filterField=== 'creationDate'?"date": "text"}
                placeholder={filterField=== 'description'? `Enter a keyword or phrase from description`: filterField=== 'All Notes'? 'Search across your notes': `Enter a ${filterField}`} />
     </span>
-    <span className="dropdown" style={{position: 'absolute', right:"25vw", top: "10px", height:"100%", width:"5vw", display: location.pathname.includes("/Home")? "": "none"}}>
+    <div className="dropdown" style={{margin: "20px 0"}}>
       <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {noteType}
       </button>
@@ -91,7 +91,7 @@ const FilterNotes =  () => {
         <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'General Note')}>General Notes</a>
         <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'All Notes')}>All Notes</a>
       </span>
-    </span>
+    </div>
    </>
 
   )
