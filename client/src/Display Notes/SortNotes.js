@@ -1,15 +1,12 @@
-import React from 'react'
-import {useState, useContext} from 'react'
-import noteContext from '../Contexts/Notes/noteContext';
+import React, {useContext} from 'react'
 import { useLocation } from 'react-router-dom';
+import noteContext from '../Contexts/Notes/noteContext';
 import './FilterSort.css';
 
 const SortNotes = () => {
   const {notes, setNotes}= useContext(noteContext);
   const location= useLocation();
   const sortNotes= async (key) =>{
-
-    // console.log("key: "+ key);
 
     let newNotes = JSON.parse(JSON.stringify(notes)); // Deep clone the notes array
 
@@ -26,16 +23,13 @@ const SortNotes = () => {
 
         // Sorting logic depending on the key type
         if (typeof a[key] === 'string' && typeof b[key] === 'string') {
-            console.log("Inside If");
             return a[key].localeCompare(b[key]);
         } else {
-            console.log("Inside Else");
             if(key=='priority') return a[key] - b[key];
             return Date(a[key]) - Date(b[key]); // This works for numbers or dates
         }
     });
 
-    // console.log("Sorted notes are: "+ JSON.stringify(newNotes));
     setNotes(newNotes); // Update the state with the sorted array
       
   }

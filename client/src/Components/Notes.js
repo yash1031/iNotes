@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+   useContext, useEffect, useRef, useState 
+} from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import noteContext from "../Contexts/Notes/noteContext";
 import NoteItem from "./NoteItem";
 import AddNote from "./AddNote";
-import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
 import RichTextEditor from "./RichTextEditor";
 import SortNotes from "../Display Notes/SortNotes";
 
@@ -15,9 +17,7 @@ const Notes = () => {
   useEffect(()=>{
     const token= localStorage.getItem('token');
     if(token){
-      console.log(token);
       getNotes();
-      
     }
     else{
       navigate('/login');
@@ -43,7 +43,6 @@ const Notes = () => {
     await form.reset();
 
     // Clear the content of the RichTextEditor
-    console.log("clearContent.current: "+ JSON.stringify(clearContent));
     clearContent.current();
 
   }
@@ -138,18 +137,12 @@ const Notes = () => {
      
         
         {notes.map((note) => {
-              console.log(note);
               return (
                 <div className="mx-3" >
                   <NoteItem key={x()} updateNote={updateNote} note={note} />
                 </div>
               );
         })}
-          {/* {notes.forEach((note)=>{
-            <div className="col">
-                  <NoteItem key={x()} updateNote={updateNote} note={note} />
-                </div>
-          })} */}
         
       </div>
     </div>

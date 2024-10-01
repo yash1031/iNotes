@@ -1,7 +1,8 @@
-import React, {useContext, useState, useRef} from 'react'
-import noteContext from '../Contexts/Notes/noteContext';
-import Notes from './Notes';
+import React, {
+  useContext, useState, useRef
+} from 'react'
 import { toast } from 'react-toastify';
+import noteContext from '../Contexts/Notes/noteContext';
 import RichTextEditor from './RichTextEditor';
 
 const AddNote = () => {
@@ -14,7 +15,6 @@ const AddNote = () => {
   const inputElements= ['title', 'description','tag', 'reference', 'priority', 'deadline'];
 
   const funToRecieveData = (data) =>{
-    console.log("Inside funcToData, data is: "+ data);
     if(typeof data === "function")
       clearContent.current= data;
     if(typeof data === "string")
@@ -44,7 +44,6 @@ const AddNote = () => {
       }
     })
     if(fieldsAvailable== false) return;
-    console.log("Note to be added is: "+ JSON.stringify(note));
     note.noteType= noteType;
     addNote(note);
     toast.success(note.noteType + " added Successfully");
@@ -93,7 +92,6 @@ const AddNote = () => {
           <label htmlFor="description" className="form-label">
             Description
           </label>
-          {/* <input type="text" className="form-control input" id="description" value={note.description} name="description" onChange={onChange} placeholder='Enter a description'/> */}
           <RichTextEditor funToRecieveData={funToRecieveData} note={note} setNote={setNote} handleOnFocus={handleOnFocus} scope="addNote"/>
           <div id="descriptionRequired" style={{display:"none", color:"Red"}}>
             Required*

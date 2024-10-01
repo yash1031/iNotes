@@ -1,7 +1,8 @@
-import React, { useContext, useRef } from "react";
-import noteContext from "../Contexts/Notes/noteContext";
+import React, {
+   useContext,  useState 
+} from "react";
 import { toast } from 'react-toastify';
-import { useState } from "react";
+import noteContext from "../Contexts/Notes/noteContext";
 import './NoteItem.css'
 
 const NoteItem = (props) => {
@@ -11,18 +12,14 @@ const NoteItem = (props) => {
   const [itemToDel, setItemToDel]= useState(note);
   // const ref= useRef(null);
   const handleClick = (note) => {
-    console.log("Note ID is: " + note._id);
-    console.log("Note is: "+ JSON.stringify(note));
     deleteNote(note._id);
     toast.success(note.noteType + " deleted successfully");
   };
   const formatTimestamp = (val) => {
     const timeStamp = new Date(val);
     const options = { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Kolkata'   };
-    // console.log("Date before format: "+ val+ " Date after format: "+ timeStamp.toLocaleDateString('en-GB', options));
     return timeStamp.toLocaleDateString('en-GB', options);
   };
-  // const formattedTimestamp = formatTimestamp(timeStamp);
 
   return (
     <div>

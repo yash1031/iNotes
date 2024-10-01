@@ -1,9 +1,9 @@
-import React from 'react'
-import { Email } from './SignUp'
+import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { Passwords } from './SignUp';
 import { toast } from 'react-toastify';
+import {
+   Email, Passwords 
+} from './SignUp'
 import './ForgotPwd.css'
 
 const ForgotPwd = () => {
@@ -26,7 +26,6 @@ const ForgotPwd = () => {
 
     }
     else if (emailValidated !== email) {
-        console.log("Validated email is: "+ emailValidated);
         const element= document.getElementById("validationRequired");
         element.style.display= '';
         setTimeout(()=>{
@@ -35,7 +34,6 @@ const ForgotPwd = () => {
         isMissing= true;
     }
     if(isMissing) return;
-    console.log("email Validated")
     document.getElementById('emailValidation').style.display= "none"
     document.getElementById('newPasswords').style.display= "";  
   }
@@ -59,7 +57,6 @@ const ForgotPwd = () => {
         });
         const json= response.json();
         if(response.status=== 200){
-            console.log("Success! Password updated for: "+ json.msg);
             document.getElementById('newPasswords').style.display= "none";
             document.getElementById('passwordChanged').style.display= "";
             document.getElementById('passwordRestLabel').style.display= "none";
@@ -69,11 +66,9 @@ const ForgotPwd = () => {
             },3000);
         }
         else{
-          console.log("Failure! Issue in password updation: "+ json.msg);
           toast.error("Error in Password Updation");
         }
     }catch(error){
-        console.log("Error in Updating Password: "+ error.msg);
         toast.error("Error in Password Updation");
     }
   }

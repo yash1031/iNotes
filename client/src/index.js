@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import {
-  createBrowserRouter,
-  RouterProvider,
+  createBrowserRouter, RouterProvider 
 } from "react-router-dom"
 import App from './App';
 import Home from './Components/Home';
 import About from './Components/About';
 import LogIn from './Components/SignupLogin/LogIn';
 import SignUp from './Components/SignupLogin/SignUp';
-import Error from './Components/Error';
 import ForgotPwd from './Components/SignupLogin/ForgotPwd';
+import './index.css';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +37,6 @@ const router = createBrowserRouter([
         element: <ForgotPwd />,
       },
     ],
-    // errorElement: <Error />,
   },
 ]);
 

@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
-import {Link} from "react-router-dom";
+import React, { 
+  useEffect, useState 
+} from "react";
+import { 
+  useNavigate, Link
+} from "react-router-dom";
 import {toast } from 'react-toastify';
 import './LoginSignUp.css'
-// import GoogleLogin from "./GoogleLogin";
-// import GoogleOAuth from "./GoogleOAuth";
-// import GoogleLogout from "./GoogleLogout";
 
 const host = process.env.REACT_APP_HOST_NAME;
 
@@ -44,7 +42,7 @@ const Email= ({email, setEmailValidated})=>{
         });
         const json = await response.json();
         if (response.status === 200) {
-          console.log("Success in requesting OTP: "+ json.msg)
+          // console.log("Success in requesting OTP: "+ json.msg)
           //If it's not the first time Validation button is clicked, time to Expire OTP will move forward, need to cancel execution of previous setTimeout function
           if (otpExpiryTimeout !== null) {
             clearTimeout(otpExpiryTimeout);
@@ -52,7 +50,7 @@ const Email= ({email, setEmailValidated})=>{
 
           setOtpExpiryTimeout(
             setTimeout(async (e) => {
-              if (document.getElementById("otpSection").style.display === "") {
+              if (document.getElementById("otpSection")?.style.display === "") {
                 document.getElementById("otpSection").style.display = "none";
                 setIsbuttonDisabled(false);
                 toast.info("OTP Expired.");
@@ -67,19 +65,19 @@ const Email= ({email, setEmailValidated})=>{
                       }
                     );
                     const json = await response.json();
-                    console.log("Result for record deletion: " + json.msg);
+                    // console.log("Result for record deletion: " + json.msg);
                 }catch(error){
-                  console.log("Error in deletion is: " + json.msg);
+                  // console.log("Error in deletion is: " + json.msg);
                 }
               }
             }, 120000)
           );
         } else {
-          console.log("Error in requesting OTP: "+ json.msg);
+          // console.log("Error in requesting OTP: "+ json.msg);
           toast.error("OTP not sent. Pls try again");
         }
     }catch(error){
-      console.log("Error in requesting OTP: "+ error);
+      // console.log("Error in requesting OTP: "+ error);
       toast.error("OTP not sent. Pls try again");
     }
   }
@@ -110,25 +108,24 @@ const Email= ({email, setEmailValidated})=>{
             }
           );
           const json = await response.json();
-          console.log("Result for record deletion: "+ json.msg)
+          // console.log("Result for record deletion: "+ json.msg)
         }catch(error){
-          console.log("Error in Record Deletion"+ error.msg);
+          // console.log("Error in Record Deletion"+ error.msg);
         }
-        console.log("Success! Result for email verification: "+ json.msg)
+        // console.log("Success! Result for email verification: "+ json.msg)
         document.getElementById("otpSection").style.display =
           "none";
         document.getElementById("verified").style.display = "";
         setTimeout(() => {
-          document.getElementById("verified").style.display =
-            "none";
+          if(document.getElementById("verified")) document.getElementById("verified").style.display = "none";
         }, 3000);
         setEmailValidated(email);
       } else {
-          console.log("Error in email Verification: "+ json.msg)
+          // console.log("Error in email Verification: "+ json.msg)
           toast.error("OTP is incorrect");
       }
     }catch(error){
-      console.log("Error in email Verification: "+ error.msg);
+      // console.log("Error in email Verification: "+ error.msg);
       toast.error("Error in Verification.")
     }
   }
@@ -323,17 +320,17 @@ const SignUp = (props) => {
           });
           const json = await response.json();
           if (response.status === 200) {
-            console.log("Success! Authentication Token is: "+ json.msg);
+            // console.log("Success! Authentication Token is: "+ json.msg);
             // save the authToken and redirect
             localStorage.setItem("token", json.msg);
             toast.success("Account Created Successfully");
             navigate("/Home");
           } else {
-            console.log("Error: "+ json.msg);
+            // console.log("Error: "+ json.msg);
             toast.error(json.msg)
           }
     }catch(error){
-          console.log("Error: "+ error);
+          // console.log("Error: "+ error);
           toast.error(error)
     }
   };

@@ -1,5 +1,6 @@
-import React from 'react'
-import { useState, useContext, useRef } from 'react';
+import React, {
+   useState, useContext
+} from 'react';
 import { useLocation } from 'react-router-dom';
 import noteContext from '../Contexts/Notes/noteContext';
 import './FilterSort.css';
@@ -9,7 +10,6 @@ const FilterNotes =  () => {
   const [noteType, setNoteType]= useState('All Notes');
   const {notes, setNotes, notesKeyword, notesCategory}=  useContext(noteContext);
   let location= useLocation();
-//   console.log("notesCopy initially are: "+ JSON.stringify(notesCopy.current));
 
   const filterByKeyword = (e) =>{
         e.preventDefault(); 
@@ -17,7 +17,6 @@ const FilterNotes =  () => {
         if(notesCategory.current.length!== 0) notesCategory.current= [];
 
         const newNotes= notesKeyword.current.filter((note)=>{
-            console.log("Input field is: " + e.target.value);
             if(filterField === 'All Notes') return note['title'].includes(e.target.value) || note['description'].includes(e.target.value) || note['tag'].includes(e.target.value);
             if(filterField === 'creationDate'){
                 const options = { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Kolkata'   };
@@ -31,29 +30,23 @@ const FilterNotes =  () => {
                 const dateSearched= new Date(e.target.value);
                 const dateSearchedFormatted = dateSearched.toLocaleString("en-GB", options1);
 
-                console.log("note[filterField] in search: "+ istDateAvailable + "dateSearched in search: "+ dateSearchedFormatted);
                 return istDateAvailable.includes(dateSearchedFormatted);
             }
             return (note[filterField]).includes(e.target.value);
         });
-        // console.log("New Notes are: "+ JSON.stringify(newNotes));
         setNotes(newNotes);
   }
 
   const filterByCategory = (e, val) =>{
     e.preventDefault(); 
-    console.log("Inside filterNotesAs. Val: "+ val);    
-    // console.log("notescopy is: "+ JSON.stringify(notesCopy));
     if(notesCategory.current.length === 0) notesCategory.current= JSON.parse(JSON.stringify(notes));
     if(notesKeyword.current.length === 0) notesKeyword.current= JSON.parse(JSON.stringify(notes));
 
-    console.log("notesCategory is: "+ JSON.stringify(notesCategory));
     if(val=== 'All Notes'){
         setNotes(notesCategory.current);
         return ;
     }
     const newNotes= notesCategory.current.filter((note)=>{
-        console.log("Value to be filter is: " + val);
         if(val==='Article') return note.reference != "";
         if(val==='Task') return note.priority != null;
         return note.reference=== "";

@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Alert from './Alert'
-import { useContext } from 'react'
 
 const Header = () => {
 

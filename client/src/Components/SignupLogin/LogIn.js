@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import {Link} from "react-router-dom";
+import React, { useEffect } from "react";
+import { 
+  useNavigate, Link
+} from "react-router-dom";
 import { toast } from 'react-toastify';
 import './LoginSignUp.css'
 
@@ -29,17 +29,17 @@ const LogIn = (props) => {
           const json= await response.json();
           if(response.status=== 200){
             // save the authToken and redirect
-            console.log(`Success! Login Success for Email: ${email} `+ json.msg)
+            // console.log(`Success! Login Success for Email: ${email} `+ json.msg)
             localStorage.setItem('token', json.msg);
             toast.success("You're successfully logged in");
             navigate('/Home');
           }
           else{
-            console.log("Failure! Error in LogIn"+ json.msg)
+            // console.log("Failure! Error in LogIn"+ json.msg)
             toast.error("Pls enter the valid credentials");
           }
     }catch(error){
-      console.log("Failure! Error in Log In"+ error.message);
+      // console.log("Failure! Error in Log In"+ error.message);
       toast.error("Error in Logging In!");
     }
     

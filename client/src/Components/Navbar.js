@@ -1,21 +1,12 @@
-import React from "react";
+import React from "react"; 
 import {
-    Link, useLocation,
-  } from "react-router-dom";
-import { useEffect } from "react";  
-import { useNavigate } from "react-router-dom";
-import Alert from "./Alert";
-import { useContext } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import FilterNotes from "../Display Notes/FilterNotes";
-import SortNotes from "../Display Notes/SortNotes";
+    Link, useLocation, useNavigate
+} from "react-router-dom";
+import {toast } from "react-toastify";
 
 const Navbar = () => {
   const navigate= useNavigate();
   let location= useLocation();
-  useEffect(()=>{
-    console.log(location);
-  },[location]);
 
   const handleSignOut= () =>{
     localStorage.removeItem('token');
@@ -55,21 +46,7 @@ const Navbar = () => {
                 About
               </Link>
             </li>
-            
-          {/* {!(localStorage.getItem('token'))?
-            <><li className="nav-item">
-            <Link className="nav-link" to='/SignUp' >SignUp</Link>
-            </li>
-            <li className="nav-item">
-            <Link className="nav-link" to='/LogIn' > LogIn</Link>
-            </li></>
-          :<button className="nav-item btn mx-2 primaryBtn" onClick={handleSignOut} role="button">SignOut</button>} */}
           </ul>
-          {/* <span style={{display: ""}}> */}
-
-          {/* <FilterNotes />
-          <SortNotes/> */}
-          {/* </span> */}
           {!(localStorage.getItem('token'))?<form className="d-flex" role="search" style={{display: "flex", justifyContent:"center"}}>
             <Link className="nav-item btn mx-2 primaryBtn" to='/SignUp' role="button" onClick={handleNavItemClick}>SignUp</Link>
             <Link className="nav-item btn mx-2 primaryBtn" to='/LogIn' role="button" onClick={handleNavItemClick}>LogIn</Link>

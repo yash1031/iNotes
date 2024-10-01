@@ -16,7 +16,9 @@ var fetchuser = require("../middleWare/fetchUser.js");
 // Secret String to create JWT Signature
 const JWT_SECRET = process.env.REACT_APP_JWT_SECRET;
 
-const host = process.env.REACT_APP_HOST_NAME;
+const nodemailer_user= process.env.REACT_APP_nodemailer_user;
+const nodemailer_password= process.env.REACT_APP_password;
+
 
 //Route1: Create a user using: POST "/api/auth/createuser". No login required
 router.post("/createuser",
@@ -36,28 +38,7 @@ router.post("/createuser",
       return res.status(400).json({ result, msg: errors.array() });
     }
 
-    /*Way-1
-        const user= User(req.body);
-        console.log("user is: "+ user);
-        user.save();
-        res.status(400).json(req.body);*/
-
-    // Way-2
-    // User.create({
-    //     name: req.body.name,
-    //     password: req.body.password,
-    //     email: req.body.email
-    // }).then(user => res.json(user))
-    // .catch(err => {console.log(err)
-    //     res.json({error: "Email already in use. Please enter a different email.", message: err.message})
-    // });
-
-    // Way-3
-    // Check whether the user already exist with this email
-
     try {
-
-      // console.log("Res before is: "+ JSON.stringify(res));
 
       // Checking whether the entered email already exists in database
       let user = await User.findOne({ email: req.body.email });
@@ -87,10 +68,10 @@ router.post("/createuser",
       const authToken = jwt.sign(data, JWT_SECRET);
       
       result = true;
-      console.log("Success! Authentication Token is: "+ authToken);
+      // console.log("Success! Authentication Token is: "+ authToken);
       res.status(200).send({ msg: authToken});
     }catch (error) {
-      console.error("Error: "+ error.message);
+      // console.error("Error: "+ error.message);
       res.status(400).json({ msg: error.message});
     }
   }
@@ -103,7 +84,6 @@ router.post("/login",
     body("password", "Password can not be blank").exists(),
   ],
   async (req, res) => {
-    // console.log(req.body);
     const errors = validationResult(req);
     let success = false;
     if (!errors.isEmpty()) {
@@ -132,33 +112,24 @@ router.post("/login",
 
       // Create a authentication token, first argument is data/payload and second is Secret String for Signature
       const authToken = jwt.sign(data, JWT_SECRET);
-      console.log(`Success! User ${email} logged in: ` + authToken);
+      // console.log(`Success! User ${email} logged in: ` + authToken);
       res.status(200).json({msg:authToken });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.status(500).json({msg: "Internal Server Error" });
     }
   }
 );
 
-// How will it work ??
-// How will it work ??
-// How will it work ??
-// How will it work ??
 //Get loggedin user details using: POST "/api/auth/getuser". Login Required
 router.post("/getuser", fetchuser, async (req, res) => {
-  // How is the fetchuser working with this post method
-  // console.log(req.body);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
   try {
     const userId = req.user.id;
-    console.log(userId);
-    console.log(User);
     const user = await User.findById(userId).select("-password");
-    console.log(user);
     res.send(user);
   } catch (error) {
     res.status(500).send("Internal Server Error");
@@ -169,8 +140,8 @@ router.post("/getuser", fetchuser, async (req, res) => {
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'yash314778@gmail.com',
-    pass: 'vtwo yrjt yojy amjs'
+    user: nodemailer_user,
+    pass: nodemailer_password
   }
 });
 
@@ -189,7 +160,7 @@ router.post("/request-otp", async (req, res) => {
 
   // Send email
   const mailOptions = {
-    from: "yash314778@gmail.com",
+    from: nodemailer_user,
     to: email,
     subject: "Your OTP Code",
     text: `Your OTP code is ${otp}`,
@@ -198,7 +169,7 @@ router.post("/request-otp", async (req, res) => {
     if (error) {
       return res.status(500).json({msg: error});
     }
-    console.log(`OTP: ${otp} sent successfully for email: ${email}`);
+    // console.log(`OTP: ${otp} sent successfully for email: ${email}`);
     res.status(200).json({msg: `OTP is ${otp}`});
   });
 });
@@ -208,10 +179,8 @@ router.post("/delete-otp", async (req,res)=>{
     try {
         const email= req.body.email;
         let record= await EmailValidation.deleteMany({email: email})
-        console.log("Record deleted is: "+ JSON.stringify(record));
         res.status(200).json({msg: `Record for Email: ${email} is deleted`});
     } catch (error) {
-        console.error(error.message);
         res.status(400).json({msg: error.message})
     } 
 })
@@ -222,15 +191,12 @@ router.post('/verify-otp', async (req, res) => {
     const otp = req.body.otp;
 
     // Verify OTP from database 
-    let emailValidationRecord = await EmailValidation.findOne({ email }).sort({ _id: -1 }); // It is to be found the recently added
-    console.log("emailValidationRecord to be used after sorting:  "+ emailValidationRecord);                                                            
+    let emailValidationRecord = await EmailValidation.findOne({ email }).sort({ _id: -1 }); // It is to be found the recently added                                                       
     const isValid = (otp === emailValidationRecord.OTP);
 
     if (isValid) {
-        console.log("OTP is Verified")
       res.status(200).json({msg: `OTP verified for ${email}`});
     } else {
-        console.log("Invalid OTP")
       res.status(400).json({msg: 'Invalid OTP'});
     }
   });
@@ -246,7 +212,6 @@ router.post('/update-password', async(req, res)=>{
         const result= await User.updateOne({email: email}, {password: secPass})
         res.status(200).json({msg: result})
     }catch(error){
-        console.error(error.message);
         res.status(400).json({msg: error.message})
     }
 })

@@ -1,5 +1,6 @@
-import { clear } from '@testing-library/user-event/dist/clear';
-import React, { useState, useEffect } from 'react';
+import React, {
+   useState, useEffect 
+} from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Import the styles
 
