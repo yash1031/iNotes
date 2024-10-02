@@ -2,9 +2,10 @@ import React,  { useEffect, useState } from 'react';
 import {
    Outlet, useNavigate 
 } from 'react-router-dom';
-import NoteState from './Contexts/Notes/noteState';
+import NoteState from './Contexts/Notes/NoteState';
 import Header from './Components/Header';
 import SplashScreen from './SplashScreen';
+import UserState from './Contexts/User/UserState';
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
   },[])
   return (
     <>
-      {loading ? <SplashScreen />  :    <NoteState><Header/><Outlet/></NoteState>}
+      {loading ? <SplashScreen />  :    <UserState><NoteState><Header/><Outlet/></NoteState></UserState>}
     </>
   );
 

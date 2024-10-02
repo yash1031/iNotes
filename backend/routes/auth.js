@@ -35,7 +35,7 @@ router.post("/createuser",
     
     // If the validation holds false, errors will contain an array with the desciption of error
     if (!errors.isEmpty()) {
-      return res.status(400).json({ result, msg: errors.array() });
+      return res.status(400).json({ result, msg: errors.array()[0].msg });
     }
 
     try {
@@ -72,7 +72,7 @@ router.post("/createuser",
       res.status(200).send({ msg: authToken});
     }catch (error) {
       // console.error("Error: "+ error.message);
-      res.status(400).json({ msg: error.message});
+      res.status(400).json({ msg: error.msg});
     }
   }
 );
@@ -174,6 +174,23 @@ router.post("/request-otp", async (req, res) => {
   });
 });
 
+
+// Endpoint to verify OTP
+router.post('/verify-otp', async (req, res) => {
+  const email = req.body.email;
+  const otp = req.body.otp;
+
+  // Verify OTP from database 
+  let emailValidationRecord = await EmailValidation.findOne({ email }).sort({ _id: -1 }); // It is to be found the recently added                                                       
+  const isValid = (otp === emailValidationRecord.OTP);
+
+  if (isValid) {
+    res.status(200).json({msg: `OTP verified for ${email}`});
+  } else {
+    res.status(400).json({msg: 'Invalid OTP'});
+  }
+});
+
 // Endpoint to Delete OTP from DB
 router.post("/delete-otp", async (req,res)=>{
     try {
@@ -185,21 +202,6 @@ router.post("/delete-otp", async (req,res)=>{
     } 
 })
 
-// Endpoint to verify OTP
-router.post('/verify-otp', async (req, res) => {
-    const email = req.body.email;
-    const otp = req.body.otp;
-
-    // Verify OTP from database 
-    let emailValidationRecord = await EmailValidation.findOne({ email }).sort({ _id: -1 }); // It is to be found the recently added                                                       
-    const isValid = (otp === emailValidationRecord.OTP);
-
-    if (isValid) {
-      res.status(200).json({msg: `OTP verified for ${email}`});
-    } else {
-      res.status(400).json({msg: 'Invalid OTP'});
-    }
-  });
 
 //Update Password
 router.post('/update-password', async(req, res)=>{

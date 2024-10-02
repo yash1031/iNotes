@@ -11,8 +11,6 @@ const NoteState= (props)=>{
     const initialNotes= [];
 
       const [notes, setNotes]= useState(initialNotes);
-      // const [notesKeyword, setNotesKeyword]= useState(initialNotes);
-      // const [notesCategory, setNotesCategory]= useState(initialNotes);
       const notesKeyword= useRef([]);
       const notesCategory= useRef([]);
 

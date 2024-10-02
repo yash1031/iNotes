@@ -3,7 +3,7 @@ import {
   useNavigate, Link
 } from "react-router-dom";
 import { toast } from 'react-toastify';
-import './LoginSignUp.css'
+import '../LoginSignUp.css'
 
 const LogIn = (props) => {
 
@@ -45,8 +45,7 @@ const LogIn = (props) => {
     
   };
   return (
-    <div className="loginSignUpComponent" style={{}}>
-      
+    <div className="loginSignUpComponent">    
 
       <form className="loginSignUpForm" onSubmit={handleSubmit}>
         <h2>Log In To iNotes</h2>

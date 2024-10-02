@@ -13,6 +13,6 @@ let connectToMongo =  async ()=>{
     }catch{(error)=>{
         return ["Failure", error];
     }}
-  }
+}
 
 module.exports= {connectToMongo};   

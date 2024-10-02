@@ -6,9 +6,9 @@ import {
 import App from './App';
 import Home from './Components/Home';
 import About from './Components/About';
-import LogIn from './Components/SignupLogin/LogIn';
-import SignUp from './Components/SignupLogin/SignUp';
-import ForgotPwd from './Components/SignupLogin/ForgotPwd';
+import LogIn from './Components/SignupLogin/LogIn/LogIn';
+import SignUp from './Components/SignupLogin/SignUp/SignUp';
+import ForgotPwd from './Components/SignupLogin/LogIn/ForgotPwd';
 import './index.css';
 
 const router = createBrowserRouter([

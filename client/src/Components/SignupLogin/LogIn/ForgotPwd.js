@@ -1,15 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import {
-   Email, Passwords 
-} from './SignUp'
-import './ForgotPwd.css'
+import Email from '../SignUp/Email'
+import Passwords from '../SignUp/Passwords'
+import './ForgotPwd.css'   
+import userContext from '../../../Contexts/User/userContext';
 
 const ForgotPwd = () => {
   const [emailValidated, setEmailValidated] = useState(null);
-  const host= process.env.REACT_APP_HOST_NAME;
   let navigate= useNavigate();
+  let context= useContext(userContext);
+  const {updatePassword}= context;
 
   const handleSubmit= (e)=>{
     e.preventDefault();
@@ -47,28 +48,18 @@ const ForgotPwd = () => {
         document.getElementById("passwordsNotMatching").style.display = "block";
         return;
     }
-    try{
-        const response= await fetch(`${host}/api/auth/update-password`,{
-            method: "POST",
-            headers:{
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({email, password}),
-        });
-        const json= response.json();
-        if(response.status=== 200){
-            document.getElementById('newPasswords').style.display= "none";
-            document.getElementById('passwordChanged').style.display= "";
-            document.getElementById('passwordRestLabel').style.display= "none";
-            document.getElementById('successIcon').classList.add('fa-beat');
-            setTimeout(()=>{
-                document.getElementById('successIcon').classList.remove('fa-beat');
-            },3000);
-        }
-        else{
-          toast.error("Error in Password Updation");
-        }
-    }catch(error){
+
+    const resultForUpdatePassword= await updatePassword(email, password);
+    if(resultForUpdatePassword){
+        document.getElementById('newPasswords').style.display= "none";
+        document.getElementById('passwordChanged').style.display= "";
+        document.getElementById('passwordRestLabel').style.display= "none";
+        document.getElementById('successIcon').classList.add('fa-beat');
+        setTimeout(()=>{
+            document.getElementById('successIcon').classList.remove('fa-beat');
+        },3000);
+    }
+    else{
         toast.error("Error in Password Updation");
     }
   }
