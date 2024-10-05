@@ -2,7 +2,7 @@ import React,  { useEffect, useState } from 'react';
 import {
    Outlet, useNavigate 
 } from 'react-router-dom';
-import NoteState from './Contexts/Notes/NoteState';
+import NoteState from './Contexts/Notes/noteState';
 import Header from './Components/Header';
 import SplashScreen from './SplashScreen';
 import UserState from './Contexts/User/UserState';
