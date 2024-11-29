@@ -35,22 +35,22 @@ const Email= ({setEmailValidated})=>{
                 // console.log("Success in requesting OTP: "+ requestedOtp[1])
                 //If it's not the first time Validation button is clicked, time to Expire OTP will move forward, need to cancel execution of previous setTimeout function
                 if (otpExpiryTimeout !== null) {
-                clearTimeout(otpExpiryTimeout);
+                  clearTimeout(otpExpiryTimeout);
                 }
                 setOtpExpiryTimeout(
                     setTimeout(async (e) => {
                         if (document.getElementById("otpSection")?.style.display === "") {
-                        document.getElementById("otpSection").style.display = "none";
-                        setIsbuttonDisabled(false);
-                        toast.info("OTP Expired.");
-                        // Once OTPs are expired, all OTP records for that user to be deleted from DB
-                        const deletedOtp= await deleteOtp(email);
-                        if(deletedOtp[0]){
-                            // console.log("Result for record deletion: " + deletedOtp[1]);
-                        }
-                        else{
-                            // console.log("Error in deletion is: " + deletedOtp[1]);
-                        }
+                          document.getElementById("otpSection").style.display = "none";
+                          setIsbuttonDisabled(false);
+                          toast.info("OTP Expired.");
+                          // Once OTPs are expired, all OTP records for that user to be deleted from DB
+                          const deletedOtp= await deleteOtp(email);
+                          if(deletedOtp[0]){
+                              // console.log("Result for record deletion: " + deletedOtp[1]);
+                          }
+                          else{
+                              // console.log("Error in deletion is: " + deletedOtp[1]);
+                          }
                         }
                     }, 120000)
                 );

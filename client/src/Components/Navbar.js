@@ -29,7 +29,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-default navbar-inverse navbar-fixed-top"   style={{backgroundColor: "#9ba4b1", color: "white"}} >
       <div className="container-fluid">
         <Link className="navbar-brand" to={`/Home`} onClick={handleNavItemClick}>
-          iNotes
+          eNotes
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>

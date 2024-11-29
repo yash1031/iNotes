@@ -48,7 +48,7 @@ const LogIn = (props) => {
     <div className="loginSignUpComponent">    
 
       <form className="loginSignUpForm" onSubmit={handleSubmit}>
-        <h2>Log In To iNotes</h2>
+        <h2>Log In To eNotes</h2>
         <div className="form-group my-3">
           <input type="email" className="form-control input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
         </div>

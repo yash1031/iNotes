@@ -8,7 +8,7 @@ const About = () => {
   return (
     <div className="about-container">
         <section className="about-content">
-            <h2>What is iNotes App?</h2>
+            <h2>What is eNotes App?</h2>
             <p>A simple and intuitive application designed to help you store, manage, and organize your notes. Whether it's a quick thought, an important reminder, or a detailed project plan, My Notes App has you covered.</p>
         </section>
         
