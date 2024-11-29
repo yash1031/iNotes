@@ -35,23 +35,25 @@ const FilterNotes =  () => {
             return (note[filterField]).includes(e.target.value);
         });
         setNotes(newNotes);
+        
   }
 
-  const filterByCategory = (e, val) =>{
+  const filterByCategory = (e, type) =>{
     e.preventDefault(); 
     if(notesCategory.current.length === 0) notesCategory.current= JSON.parse(JSON.stringify(notes));
     if(notesKeyword.current.length === 0) notesKeyword.current= JSON.parse(JSON.stringify(notes));
 
-    if(val=== 'All Notes'){
+    if(type=== 'All Notes'){
         setNotes(notesCategory.current);
         return ;
     }
     const newNotes= notesCategory.current.filter((note)=>{
-        if(val==='Article') return note.reference != "";
-        if(val==='Task') return note.priority != null;
-        return note.reference=== "";
+        if(type==='Articles') return note.reference != "";
+        if(type==='Tasks') return note.priority != null;
+        return note.reference=== "" && note.priority === null;
     });
     setNotes(newNotes);
+    setNoteType(type);
   }
 
   return (
@@ -78,10 +80,10 @@ const FilterNotes =  () => {
       <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {noteType}
       </button>
-      <span className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{width: "100%"}}>
-        <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'Article')}>Articles</a>
-        <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'Task')}>Tasks</a>
-        <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'General Note')}>General Notes</a>
+      <span className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{width: "5%"}}>
+        <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'Articles')}>Articles</a>
+        <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'Tasks')}>Tasks</a>
+        <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'General Notes')}>General Notes</a>
         <a className="dropdown-item" onClick={(e)=>filterByCategory(e, 'All Notes')}>All Notes</a>
       </span>
     </div>

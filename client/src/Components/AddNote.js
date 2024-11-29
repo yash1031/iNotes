@@ -70,7 +70,7 @@ const AddNote = () => {
           <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select Note Type
           </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{width: "100%"}}>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{width: "20%"}}>
             <a className="dropdown-item" onClick={(e)=>{e.preventDefault(); setNoteType('Article')}}>Article</a>
             <a className="dropdown-item" onClick={(e)=>{e.preventDefault(); setNoteType('Task')}}   >Task</a>
             <a className="dropdown-item" onClick={(e)=>{e.preventDefault(); setNoteType('General Note')}}>General Note</a>
