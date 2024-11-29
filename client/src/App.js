@@ -1,4 +1,4 @@
-import React,  { useEffect, useState } from 'react';
+import React,  { useEffect, useState, useContext } from 'react';
 import {
    Outlet, useNavigate 
 } from 'react-router-dom';
@@ -7,11 +7,16 @@ import Header from './Components/Header';
 import SplashScreen from './SplashScreen';
 import UserState from './Contexts/User/UserState';
 import "react-toastify/dist/ReactToastify.css";
+import Demonstration from './Components/Demonstration';
+import userContext from './Contexts/User/userContext';
 
 function App() {
   //CHeck if its there
   const [loading, setLoading]= useState(true);
   const navigate= useNavigate();
+
+  
+
   useEffect(()=>{
     if(localStorage.getItem('currentEndpoint')== null)
       navigate('LogIn');
@@ -33,7 +38,16 @@ function App() {
   },[])
   return (
     <>
-      {loading ? <SplashScreen />  :    <UserState><NoteState><Header/><Outlet/></NoteState></UserState>}
+      {loading ? <SplashScreen />  :    
+      <UserState>
+        <NoteState>
+          <Header/>
+          <Outlet/>
+          {true ?<Demonstration/>:''}
+        </NoteState>
+      </UserState>}
+      
+      
     </>
   );
 

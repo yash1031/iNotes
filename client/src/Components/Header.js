@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Alert from './Alert'
+import Demonstration from './Demonstration'
 
 const Header = () => {
 

@@ -1,9 +1,11 @@
 import React from 'react'
 import userContext from './userContext'
+import { useState } from 'react';
 
 const UserState = (props) => {
 
   const host= process.env.REACT_APP_HOST_NAME;
+  const [endPoint, setEndPoint]= useState('LogIn')
 
   const requestOtp= async (email)=>{
     try{
@@ -108,7 +110,7 @@ const UserState = (props) => {
   }
 
   return (
-    <userContext.Provider value={{updatePassword, loginUser, createUser, verifyOtp, deleteOtp, requestOtp}}>
+    <userContext.Provider value={{endPoint, setEndPoint, updatePassword, loginUser, createUser, verifyOtp, deleteOtp, requestOtp}}>
       {props.children}
     </userContext.Provider>
   )

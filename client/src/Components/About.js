@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import './About.css'
+import userContext from '../Contexts/User/userContext';
 
 const About = () => {
+    const context = useContext(userContext);
+    const {setEndPoint}= context
     useEffect(()=>{
       localStorage.setItem('currentEndpoint', 'about');
+        setEndPoint('about')
     },[])
   return (
     <div className="about-container">

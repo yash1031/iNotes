@@ -1,15 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { 
   useNavigate, Link
 } from "react-router-dom";
 import { toast } from 'react-toastify';
 import '../LoginSignUp.css'
+import userContext from "../../../Contexts/User/userContext";
 
 const LogIn = (props) => {
+  const context = useContext(userContext);
+  const {endPoint, setEndPoint}= context
 
   let navigate= useNavigate();
   useEffect(()=>{
     localStorage.setItem('currentEndpoint', 'LogIn');
+    console.log("endPoint: ", endPoint);
+    setEndPoint('LogIn');
+    console.log("endPoint: ", endPoint);
   },[])
 
   const host= process.env.REACT_APP_HOST_NAME;

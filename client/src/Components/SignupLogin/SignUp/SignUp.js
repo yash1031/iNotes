@@ -13,13 +13,17 @@ import '../LoginSignUp.css'
 const host = process.env.REACT_APP_HOST_NAME;
 
 const SignUp = (props) => {
+  
+  const context= useContext(userContext);
+  const {endPoint, createUser, setEndPoint}= context;
+
   let navigate = useNavigate();
   useEffect(() => {
     localStorage.setItem("currentEndpoint", "SignUp");
+    setEndPoint('SignUp');
+    console.log("endPoint: ", endPoint);
   }, []);
   const [emailValidated, setEmailValidated] = useState(null);
-  const context= useContext(userContext);
-  const {createUser}= context;
 
   const handleSubmit = async (e) => {
     e.preventDefault(); //This will prevent the page to reload
