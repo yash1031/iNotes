@@ -19,7 +19,7 @@ const About = () => {
         <section className="about-features">
             <h2>Features</h2>
             <ul>
-                <li><strong>Create Notes:</strong> Quickly jot down notes with a title, description, and tags.</li>
+                <li><strong>Create Notes:</strong> Quickly take down notes with a title, description, and tags.</li>
                 <li><strong>Edit & Update:</strong> Easily update your notes as your thoughts evolve.</li>
                 <li><strong>Delete Notes:</strong> Remove notes that you no longer need.</li>
                 <li><strong>Tagging System:</strong> Organize your notes with tags for easy retrieval.</li>
