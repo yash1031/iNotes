@@ -9,7 +9,7 @@ Overview
 
 Basic Functions
 
-	- Create Notes: Quickly jot down notes with a title, description, and tags.
+	- Create Notes: Quickly take down notes with a title, description, and tags.
  	- Edit & Update: Easily update your notes as your thoughts evolve.
 	- Delete Notes: Remove notes that you no longer need.
 	- Tagging System: Organize your notes with tags for easy retrieval.
